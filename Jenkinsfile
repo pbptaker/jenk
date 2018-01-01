@@ -1,12 +1,12 @@
 pipeline {
   agent {
     node {
-      label 'pvs'
+      label 'master'
     }
     
   }
   stages {
-    stage('') {
+    stage('error') {
       steps {
         script {
           vSphere buildStep: [$class: 'PowerOn', timeoutInSeconds: 180, vm: 'target'], serverName: 'nuc'
