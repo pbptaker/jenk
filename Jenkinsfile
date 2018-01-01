@@ -7,20 +7,11 @@ pipeline {
   }
   stages {
     stage('Start PVS') {
-      parallel {
-        stage('Start PVS') {
-          steps {
-            script {
-              vSphere buildStep: [$class: 'PowerOn', timeoutInSeconds: 180, vm: 'pvs'], serverName: 'nuc'
-            }
-            
-          }
+      steps {
+        script {
+          vSphere buildStep: [$class: 'PowerOn', timeoutInSeconds: 180, vm: 'pvs'], serverName: 'nuc'
         }
-        stage('') {
-          steps {
-            bat 'dcd'
-          }
-        }
+        
       }
     }
     stage('Start Target') {
@@ -31,10 +22,13 @@ pipeline {
         
       }
     }
-    stage('Posershell') {
+    stage('') {
       steps {
-        script {
-          powershell 'New-Item c:\\scripts\\test -type directory'
+        node(label: 'target') {
+          script {
+            powershell 'New-Item c:\\scripts\\test -type directory'
+          }
+          
         }
         
       }
