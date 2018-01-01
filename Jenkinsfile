@@ -25,7 +25,7 @@ pipeline {
     stage('Execute Powershell') {
       steps {
         script {
-          powershell 'New-Item c:\\scripts\\Windows PowerShell -type directory'
+          powershell 'New-Item c:\\scripts\\test -type directory'
         }
         
       }
