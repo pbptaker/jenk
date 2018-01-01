@@ -1,17 +1,26 @@
 pipeline {
   agent {
     node {
-      label 'target'
+      label 'ddc3'
     }
     
   }
   stages {
     stage('Start PVS') {
-      steps {
-        script {
-          vSphere buildStep: [$class: 'PowerOn', timeoutInSeconds: 180, vm: 'pvs'], serverName: 'nuc'
+      parallel {
+        stage('Start PVS') {
+          steps {
+            script {
+              vSphere buildStep: [$class: 'PowerOn', timeoutInSeconds: 180, vm: 'pvs'], serverName: 'nuc'
+            }
+            
+          }
         }
-        
+        stage('') {
+          steps {
+            bat 'dcd'
+          }
+        }
       }
     }
     stage('Start Target') {
