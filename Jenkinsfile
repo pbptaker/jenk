@@ -6,7 +6,7 @@ pipeline {
     
   }
   stages {
-    stage('error') {
+    stage('Start Target') {
       steps {
         script {
           vSphere buildStep: [$class: 'PowerOn', timeoutInSeconds: 180, vm: 'target'], serverName: 'nuc'
@@ -18,6 +18,14 @@ pipeline {
       steps {
         script {
           vSphere buildStep: [$class: 'PowerOn', timeoutInSeconds: 180, vm: 'pvs'], serverName: 'nuc'
+        }
+        
+      }
+    }
+    stage('Execute Powershell') {
+      steps {
+        script {
+          powershell 'New-Item c:\\scripts\\Windows PowerShell -type directory'
         }
         
       }
