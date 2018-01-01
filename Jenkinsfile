@@ -17,12 +17,12 @@ pipeline {
     stage('Start Target') {
       steps {
         script {
-          vSphere buildStep: [$class: 'PowerOn', timeoutInSeconds: 180, vm: 'Target'], serverName: 'nuc'
+          vSphere buildStep: [$class: 'PowerOn', timeoutInSeconds: 180, vm: 'target'], serverName: 'nuc'
         }
         
       }
     }
-    stage('Execute Powershell') {
+    stage('Powershell') {
       steps {
         script {
           powershell 'New-Item c:\\scripts\\test -type directory'
