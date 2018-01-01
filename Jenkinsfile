@@ -22,7 +22,7 @@ pipeline {
         
       }
     }
-    stage('') {
+    stage('Powershell') {
       steps {
         node(label: 'target') {
           script {
