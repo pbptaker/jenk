@@ -24,7 +24,7 @@ pipeline {
     }
     stage('Powershell') {
       steps {
-        node(label: 'target') {
+        node(label: 'Target') {
           script {
             powershell 'New-Item c:\\scripts\\test -type directory'
           }
