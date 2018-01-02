@@ -1,7 +1,7 @@
 pipeline {
   agent {
     node {
-      label 'ddc3'
+      label 'master'
     }
     
   }
