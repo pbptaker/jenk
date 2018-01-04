@@ -17,7 +17,7 @@ pipeline {
     stage('Start Target') {
       steps {
         script {
-          vSphere buildStep: [$class: 'PowerOn', timeoutInSeconds: 180, vm: 'target'], serverName: 'nuc'
+          vSphere buildStep: [$class: 'PowerOn', timeoutInSeconds: 180, vm: 'MasterTarget'], serverName: 'nuc'
         }
         
       }
