@@ -1,7 +1,7 @@
 pipeline {
   agent {
     node {
-      label 'PVS'
+      label 'ddc3'
     }
     
   }
