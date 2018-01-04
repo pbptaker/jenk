@@ -1,7 +1,7 @@
 pipeline {
   agent {
     node {
-      label 'ddc3'
+      label 'PVS'
     }
     
   }
@@ -14,28 +14,20 @@ pipeline {
         
       }
     }
-    stage('Start Target') {
+    stage('Create new vDisk-Version') {
+      steps {
+        node(label: 'PVS') {
+          powershell 'ddd'
+        }
+        
+      }
+    }
+    stage('Start MasterTarget') {
       steps {
         script {
           vSphere buildStep: [$class: 'PowerOn', timeoutInSeconds: 180, vm: 'MasterTarget'], serverName: 'nuc'
         }
         
-      }
-    }
-    stage('Powershell') {
-      steps {
-        node(label: 'Target') {
-          script {
-            powershell 'New-Item c:\\scripts\\test -type directory'
-          }
-          
-        }
-        
-      }
-    }
-    stage('error') {
-      steps {
-        echo 'dddd'
       }
     }
   }
