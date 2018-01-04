@@ -6,9 +6,9 @@ pipeline {
     
   }
   stages {
-    stage('Ask for start'){
+    stage('Ask for start') {
       steps {
-      input 'Start the run?'
+        input 'Start the run?'
       }
     }
     stage('Start PVS') {
